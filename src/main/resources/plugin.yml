@@ -1,0 +1,32 @@
+name: PrisonLeveling
+version: 1.0.0
+main: de.schlaumeier.PrisonLeveling
+description: A plugin that adds a leveling system to prison servers.
+author: Schlaumeier5
+api-version: '1.21.4'
+commands:
+  xp:
+    description: Manage player XP and levels.
+    usage: /<command> <add|set|setlevel|get> [player] [amount]
+    permission: prisonleveling.xp
+    permission-message: You do not have permission to use this command.
+  class:
+    description: Manage player classes.
+    usage: /<command> <set|get> [player] [class]
+    permission: prisonleveling.class
+    permission-message: You do not have permission to use this command.
+  respawnitems:
+    description: Edit respawn items for classes.
+    usage: /<command> [class] [level]
+    permission: prisonleveling.respawnitems
+    permission-message: You do not have permission to use this command.
+permissions:
+  prisonleveling.xp:
+    description: Allows usage of the /xp command.
+    default: true
+  prisonleveling.class:
+    description: Allows usage of the /class command.
+    default: true
+  prisonleveling.respawnitems:
+    description: Allows usage of the /respawnitems command.
+    default: op
