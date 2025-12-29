@@ -30,7 +30,7 @@ public class RespawnItemEditListener implements Listener {
 
         edit.pc.addRespawnItems(items, edit.level);
 
-        e.getPlayer().sendMessage("§aRespawn-Items gespeichert!");
+        e.getPlayer().sendMessage("§aRespawn Items Saved!");
 
         // Klassen speichern
         plugin.getClassManager().save();
