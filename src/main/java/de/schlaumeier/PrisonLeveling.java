@@ -93,7 +93,7 @@ public class PrisonLeveling extends JavaPlugin implements Listener {
                 Integer xpGain = killerClass.getXpGains().get(victimClass);
                 if (xpGain != null) {
                     event.getEntity().getKiller().sendMessage(
-                            Component.text("You gained " + xpGain + " XP for killing " + event.getEntity().getName() + "!"));
+                            Component.text("§bYou gained " + xpGain + " XP for killing " + event.getEntity().getName() + "!"));
                             PrisonClassHelper.addXpToPlayer(event.getEntity().getKiller(), xpGain);
                 }
             }
