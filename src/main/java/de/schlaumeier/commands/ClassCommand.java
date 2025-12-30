@@ -7,6 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import de.schlaumeier.PrisonClass;
+import de.schlaumeier.PrisonClassHelper;
 import de.schlaumeier.serialization.ClassManager;
 import de.schlaumeier.serialization.PlayerClassData;
 import de.schlaumeier.serialization.PlayerDataManager;
@@ -74,8 +75,7 @@ public class ClassCommand implements CommandExecutor {
                 return true;
             }
 
-            PlayerClassData d = data.get(t.getUniqueId());
-            d.setPrisonClass(pc);
+            PrisonClassHelper.setClass(t, pc);
 
             s.sendMessage("§aClass changed.");
             return true;

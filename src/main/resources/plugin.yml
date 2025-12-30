@@ -30,3 +30,5 @@ permissions:
   prisonleveling.respawnitems:
     description: Allows usage of the /respawnitems command.
     default: op
+depend:
+  - LuckPerms

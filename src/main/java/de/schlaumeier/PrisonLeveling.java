@@ -1,6 +1,8 @@
 package de.schlaumeier;
 
 import net.kyori.adventure.text.Component;
+import net.luckperms.api.LuckPerms;
+import net.luckperms.api.LuckPermsProvider;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -37,12 +39,16 @@ public class PrisonLeveling extends JavaPlugin implements Listener {
     private final ClassManager classManager = new ClassManager(getDataFolder());
     private final PlayerDataManager playerDataManager = new PlayerDataManager(getDataFolder(), classManager);
     public Map<UUID, ActiveRespawnEditor> activeEditor = new HashMap<>();
+    private LuckPerms luckPerms;
 
     public PlayerDataManager getPlayerDataManager() {
         return playerDataManager;
     }
     public ClassManager getClassManager() {
         return classManager;
+    }
+    public LuckPerms getLuckPerms() {
+        return luckPerms;
     }
     
     @Override
@@ -60,6 +66,8 @@ public class PrisonLeveling extends JavaPlugin implements Listener {
         getCommand("respawnitems").setExecutor(new RespawnItemsEditCommand(this, classManager));
 
         getServer().getPluginManager().registerEvents(new RespawnItemEditListener(this), this);
+
+        luckPerms = LuckPermsProvider.get();
     }
 
     @Override
@@ -82,6 +90,7 @@ public class PrisonLeveling extends JavaPlugin implements Listener {
                     1,
                     0
             ));
+            PrisonClassHelper.setClass(event.getPlayer(), defaultClass);
         }
     }
     @EventHandler
