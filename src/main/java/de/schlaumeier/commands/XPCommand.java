@@ -94,6 +94,7 @@ public class XPCommand implements CommandExecutor {
 
             PrisonClassHelper.addXpToPlayer(t, amount);
             s.sendMessage("§aXP changed.");
+            t.sendMessage("§bYou have gained §a" + amount + " §bXP!");
             return true;
         }
 
