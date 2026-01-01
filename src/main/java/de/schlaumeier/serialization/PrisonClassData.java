@@ -19,6 +19,7 @@ public class PrisonClassData implements ConfigurationSerializable {
     public Map<String, Integer> xpGains = new HashMap<>();
     public List<String> enemies = new ArrayList<>();
     public List<List<ItemStack>> respawnItems = new ArrayList<>();
+    public boolean friendlyFire = true;
     @Override
     public @NotNull Map<String, Object> serialize() {
         Map<String, Object> map = new LinkedHashMap<>();
@@ -30,6 +31,7 @@ public class PrisonClassData implements ConfigurationSerializable {
         map.put("parentName", parentName);
         map.put("xpGains", xpGains);
         map.put("enemies", enemies);
+        map.put("friendlyFire", friendlyFire);
         map.put("respawnItems", respawnItems);
 
         return map;
@@ -46,6 +48,7 @@ public class PrisonClassData implements ConfigurationSerializable {
         data.parentName = (String) map.get("parentName");
 
         data.xpGains = (Map<String, Integer>) map.getOrDefault("xpGains", new HashMap<>());
+        data.friendlyFire = (boolean) map.getOrDefault("friendlyFire", true);
         data.enemies = (List<String>) map.getOrDefault("enemies", new ArrayList<>());
 
         // respawnItems ist eine Liste von Listen

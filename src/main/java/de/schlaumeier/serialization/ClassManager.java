@@ -33,7 +33,7 @@ public class ClassManager {
         classes.clear();
 
         if (!file.exists()) {
-            Bukkit.getLogger().warning("[Prison] classes.yml nicht gefunden (erstes Laden?)");
+            Bukkit.getLogger().warning("[Prison] classes.yml not found (first load?)");
             return;
         }
 
@@ -51,7 +51,8 @@ public class ClassManager {
                     data.maxLevel,
                     data.experienceMultiplier,
                     data.permissionNode,
-                    null
+                    null,
+                    data.friendlyFire
             );
             classes.put(data.name, pc);
         }
@@ -118,6 +119,7 @@ public class ClassManager {
         d.parentName = pc.getParentClass() != null
                 ? pc.getParentClass().getName()
                 : null;
+        d.friendlyFire = pc.isFriendlyFire();
 
         for (Map.Entry<PrisonClass, Integer> e : pc.getXpGains().entrySet())
             d.xpGains.put(e.getKey().getName(), e.getValue());
@@ -141,7 +143,7 @@ public class ClassManager {
 
             while (cur != null) {
                 if (!visited.add(cur)) {
-                    Bukkit.getLogger().severe("[Prison] FEHLER: Zirkuläre Elternkette entdeckt bei Klasse: " + pc.getName());
+                    Bukkit.getLogger().severe("[Prison] ERROR: Circular Parent Chain for class: " + pc.getName());
                     pc.setParentClass(null);
                     break;
                 }

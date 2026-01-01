@@ -30,6 +30,7 @@ import de.schlaumeier.serialization.ClassManager;
 import de.schlaumeier.serialization.PlayerClassData;
 import de.schlaumeier.serialization.PlayerDataManager;
 import de.schlaumeier.serialization.PrisonClassData;
+import io.papermc.paper.event.player.PrePlayerAttackEntityEvent;
 
 public class PrisonLeveling extends JavaPlugin implements Listener {
     private static PrisonLeveling instance;
@@ -105,6 +106,16 @@ public class PrisonLeveling extends JavaPlugin implements Listener {
                             Component.text("§bYou gained " + xpGain + " XP for killing " + event.getEntity().getName() + "!"));
                             PrisonClassHelper.addXpToPlayer(event.getEntity().getKiller(), xpGain);
                 }
+            }
+        }
+    }
+    @EventHandler
+    public void onPlayerAttack(PrePlayerAttackEntityEvent e) {
+        if (e.getAttacked() instanceof org.bukkit.entity.Player target && e.getPlayer() instanceof org.bukkit.entity.Player attacker) {
+            PrisonClass attackerClass = PrisonClassHelper.getClass(attacker);
+            PrisonClass targetClass = PrisonClassHelper.getClass(target);
+            if (attackerClass == targetClass && attackerClass != null && !attackerClass.isFriendlyFire()) {
+                e.setCancelled(true);
             }
         }
     }

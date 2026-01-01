@@ -16,18 +16,21 @@ public class PrisonClass {
     private final List<PrisonClass> enemies = new ArrayList<>();
     private final Map<PrisonClass, Integer> xpGains = new java.util.HashMap<>();
     @Nullable private PrisonClass parentClass;
+    private final boolean friendlyFire;
 
     public PrisonClass(
             String name,
             int maxLevel,
             double experienceMultiplier,
             String permissionNode,
-            @Nullable PrisonClass parentClass) {
+            @Nullable PrisonClass parentClass,
+            boolean friendlyFire) {
         this.name = name;
         this.maxLevel = maxLevel;
         this.experienceMultiplier = experienceMultiplier;
         this.permissionNode = permissionNode;
         this.parentClass = parentClass;
+        this.friendlyFire = friendlyFire;
     }
 
     public String getName() {
@@ -68,6 +71,9 @@ public class PrisonClass {
             respawnItems.add(new ItemStack[0]);
         }
         respawnItems.set(level, items);
+    }
+    public boolean isFriendlyFire() {
+        return friendlyFire;
     }
     public ItemStack[] getRespawnItems(int level) {
         if (level < respawnItems.size()) {
